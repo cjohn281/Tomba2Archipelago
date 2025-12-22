@@ -1,10 +1,12 @@
 from typing import Dict, Any
 
-from BaseClasses import Region, Tutorial
+from BaseClasses import Region, Tutorial, Entrance
 from worlds.AutoWorld import World, WebWorld
 
-from .items import Tomba2Item, ITEM_TABLE, ITEM_CLASSIFICATION
-from .locations import Tomba2Location, LOCATION_TABLE
+from .items import Tomba2Item, item_table
+from .locations import Tomba2Location, location_table
+from .rules import set_rules
+from .regions import create_regions
 
 
 class Tomba2WebWorld(WebWorld):
@@ -14,8 +16,8 @@ class Tomba2WebWorld(WebWorld):
 			description="Basic setup for Tomba 2 in Archipelago",
 			language="English",
 			file_name="",
-            link="",
-			authors=["Chris Johnson"],
+      link="",
+			authors=["clickspark"],
 		)
 	]
 
@@ -24,51 +26,46 @@ class Tomba2World(World):
 	game = "Tomba 2"
 	web = Tomba2WebWorld()
 
-	origin_region_name = "Start"
+	origin_region_name = "Town of the Fishermen"
 
-	item_name_to_id: Dict[str, int] = ITEM_TABLE
-	location_name_to_id: Dict[str, int] = LOCATION_TABLE
+	item_name_to_id = {data.name: item_id for item_id, data in item_table.items()}
+	location_name_to_id = {data.full_name: loc_id for loc_id, data in location_table.items()}
 
-	def create_regions(self) -> None:
-		start_region = Region("Start", self.player, self.multiworld)
 
-		for name, code in LOCATION_TABLE.items():
-			start_region.locations.append(
-				Tomba2Location(self.player, name, code, start_region)
-			)
+	create_regions = create_regions
 
-		self.multiworld.regions.append(start_region)
 
 	def create_item(self, name: str) -> Tomba2Item:
-		code = ITEM_TABLE[name]
-		classification = ITEM_CLASSIFICATION.get(name)
-		return Tomba2Item(name, classification, code, self.player)
+		item_id = self.item_name_to_id[name]
+		return Tomba2Item(name, item_table[item_id].classification, item_id, self.player)
 
 	def create_items(self) -> None:
-		for name in ITEM_TABLE.keys():
+		starting_weapons = ["Blackjack", "Boomerang"]
+		starting_pants = ["Green Pants", "Fast Pants"]
+
+		weapon_choice = self.multiworld.random.choice(starting_weapons)
+		pants_choice = self.multiworld.random.choice(starting_pants)
+		starting_items = {weapon_choice, pants_choice}
+
+		chicks = self.multiworld.random.choices(["Red Chick", "Blue Chick"], k=2)
+		for name in chicks:
 			self.multiworld.itempool.append(self.create_item(name))
 
-	def set_rules(self) -> None:
-		from worlds.generic.Rules import add_item_rule
+		for id in item_table.keys():
+			quantity = item_table[id].count
+			if item_table[id].name in starting_items:
+				quantity -= 1
+			if item_table[id].name in {"Red Chick", "Blue Chick"}:
+				continue	# Chicks are handled above
+			for _ in range(max(quantity, 0)):
+				self.multiworld.itempool.append(self.create_item(item_table[id].name))
 
-		forest_loc = self.multiworld.get_location(
-			"Village: Starting Chest", self.player
-		)
-		village_house_loc = self.multiworld.get_location(
-			"Village: House Item", self.player
-		)
-		forest_grapple_loc = self.multiworld.get_location(
-			"Forest: First Chest (needs Grapple)", self.player
-		)
-		beach_swim_loc = self.multiworld.get_location(
-			"Beach: Shallow Chest (needs Swim)", self.player
-		)
+		for item_name in starting_items:
+			self.multiworld.push_precollected(self.create_item(item_name))
 
-		forest_loc.access_rule = lambda state: True
-		village_house_loc.access_rule = lambda state: True
 
-		forest_grapple_loc.access_rule = lambda state: state.has("Grapple", self.player)
-		beach_swim_loc.access_rule = lambda state: state.has("Swim", self.player)
+	set_rules = set_rules
+
 
 	def fill_slot_data(self) -> Dict[str, Any]:
 		return {}
