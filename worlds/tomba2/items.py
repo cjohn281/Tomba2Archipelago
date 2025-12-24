@@ -35,7 +35,7 @@ item_table: Dict[int, ItemData] = {
 	820208: ItemData("Pig Nose Panel", 1, ItemClass.progression),
 
 	# Consumable Items
-	820300: ItemData("Magic Wings", 2, ItemClass.filler),
+	820300: ItemData("Magic Wings", 3, ItemClass.filler),
 	820301: ItemData("Magic Wings x2", 1, ItemClass.filler),
 	820302: ItemData("Pot of Life (1/2)", 6, ItemClass.useful),
 	820303: ItemData("Magic Increase", 2, ItemClass.useful),

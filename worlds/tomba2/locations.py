@@ -7,6 +7,12 @@ LocPre: Dict[str, str] = {
 	"WotH": "Waterfall of the Heavens - ",
 	"PA": "Pipe Area - ",
 	"CMT": "Coal-Mining Town - ",
+	"KR": "Kujara Ranch Area - ",
+	"KRS": "Kujara Ranch Summit - ",
+	"DongF": "Donglin Forest - ",
+	"DeepF": "Deep Forest - ",
+	"CV": "Circus Village - ",
+	"WT": "Water Temple - ",
 }
 
 
@@ -28,19 +34,20 @@ location_table: Dict[int, LocationData] = {
 	# Town of the Fisherman 8300xx
 	830000: LocationData("TotF", "Seesaw 1 Chick"),
 	830001: LocationData("TotF", "Seesaw 2 Chick"),
-	830002: LocationData("TotF", "Rare Fish"),
-	830003: LocationData("TotF", "Bucket"),
-	830004: LocationData("TotF", "Above Climbable Pole"),
-	830005: LocationData("TotF", "Fish Drying Net"),
-	830006: LocationData("TotF", "Kainen",(("Bucket", 1),)),
-	830007: LocationData("TotF", "Net Bridge",(("Star-Shaped Cog", 1),)),
+	830002: LocationData("TotF", "Magic Flower"),
+	830003: LocationData("TotF", "Rare Fish"),
+	830004: LocationData("TotF", "Bucket"),
+	830005: LocationData("TotF", "Above Climbable Pole"),
+	830006: LocationData("TotF", "Fish Drying Net"),
+	830007: LocationData("TotF", "Kainen",(("Bucket", 1),)),
+	830008: LocationData("TotF", "Net Bridge",(("Star-Shaped Cog", 1),)),
 
 	# Town of the Fisherman Chests
-	830008: LocationData("TotF", "Red Chest near burning house",(("Red Key", 1),)),
-	830009: LocationData("TotF", "Red Chest above the third seesaw",(("Red Key", 1),)),
-	830010: LocationData("TotF", "Red Chest past the second seesaw",(("Red Key", 1),)),
-	# 830011: LocationData("TotF", "Green Chest above the third seesaw",(("Green Key", 1),("Grapple", 1),)),
-	# 830012: LocationData("TotF", "Green Chest midair past the second seesaw",(("Green Key", 1),)),
+	830009: LocationData("TotF", "Red Chest near burning house",(("Red Key", 1),)),
+	830010: LocationData("TotF", "Red Chest above the third seesaw",(("Red Key", 1),)),
+	830011: LocationData("TotF", "Red Chest past the second seesaw",(("Red Key", 1),)),
+	# 830012: LocationData("TotF", "Green Chest above the third seesaw",(("Green Key", 1),("Grapple", 1),)),
+	# 830013: LocationData("TotF", "Green Chest midair past the second seesaw",(("Green Key", 1),)),
 	
 	# Waterfall of the Heavens 8301xx
 	830100: LocationData("WotH", "First Pig"),
