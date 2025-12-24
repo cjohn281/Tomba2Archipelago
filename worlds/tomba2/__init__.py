@@ -32,9 +32,6 @@ class Tomba2World(World):
 	location_name_to_id = {data.full_name: loc_id for loc_id, data in location_table.items()}
 
 
-	create_regions = create_regions
-
-
 	def create_item(self, name: str) -> Tomba2Item:
 		item_id = self.item_name_to_id[name]
 		return Tomba2Item(name, item_table[item_id].classification, item_id, self.player)
@@ -64,6 +61,7 @@ class Tomba2World(World):
 			self.multiworld.push_precollected(self.create_item(item_name))
 
 
+	create_regions = create_regions
 	set_rules = set_rules
 
 

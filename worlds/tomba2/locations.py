@@ -25,7 +25,7 @@ class LocationData(NamedTuple):
 
 
 location_table: Dict[int, LocationData] = {
-	# Town of the Fisherman
+	# Town of the Fisherman 8300xx
 	830000: LocationData("TotF", "Seesaw 1 Chick"),
 	830001: LocationData("TotF", "Seesaw 2 Chick"),
 	830002: LocationData("TotF", "Rare Fish"),
@@ -42,7 +42,7 @@ location_table: Dict[int, LocationData] = {
 	# 830011: LocationData("TotF", "Green Chest above the third seesaw",(("Green Key", 1),("Grapple", 1),)),
 	# 830012: LocationData("TotF", "Green Chest midair past the second seesaw",(("Green Key", 1),)),
 	
-	# Waterfall of the Heavens
+	# Waterfall of the Heavens 8301xx
 	830100: LocationData("WotH", "First Pig"),
 	830101: LocationData("WotH", "Between Aquatic Plants"),
 	830102: LocationData("WotH", "Platform Crab",(("Crab Basket", 1),)),
@@ -62,8 +62,71 @@ location_table: Dict[int, LocationData] = {
 	# 830022: LocationData("WotH", "Blue Chest above Windmill Shed",(("Blue Key", 1),)),
 	# 830023: LocationData("WotH", "Blue Chest below seesaws",(("Blue Key", 1),)),
 
-	# Pipe Area
+	# Pipe Area 8302xx
 	
 
 	# Pipe Area Chests
+
+
+	# Coal-Mining Town 8303xx
+
+
+	# Coal-Mining Town Chests
+
+
+	# Ranch Area 8304xx
+
+
+	# Ranch Area Chests
+
+
+	# Ranch Summit 8305xx
+
+
+	# Ranch Summit Chests
+
+
+	# Donglin Forest 8306xx
+
+
+	# Donglin Forest Chests
+
+
+	# Deep Forest 8307xx
+
+
+	# Deep Forest Chests
+
+
+	# Circus Village 8308xx
+
+
+	# Circus Village Chests
+
+
+	# Water Temple 8309xx
+
+
+	# Water Temple Chests
+
+
+	# Mouse Village 8310xx
+
+
+	# Mouse Village Chests
+
+
+	# Towers 8311xx
+
+
+	# Tower Chests
+
+
+	# Underground Mine 8312xx
+
+
+	# Underground Mine Chests
+
+
+	# Evil Pigs 8313xx
 }
