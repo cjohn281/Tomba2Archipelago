@@ -23,7 +23,7 @@ class Tomba2WebWorld(WebWorld):
 
 
 class Tomba2World(World):
-	game = "Tomba 2"
+	game = "Tomba 2 Special Edition"
 	web = Tomba2WebWorld()
 
 	origin_region_name = "Town of the Fishermen"
@@ -37,7 +37,7 @@ class Tomba2World(World):
 		return Tomba2Item(name, item_table[item_id].classification, item_id, self.player)
 
 	def create_items(self) -> None:
-		starting_weapons = ["Blackjack", "Boomerang"]
+		starting_weapons = ["Blackjack", "Boomerang", "Ice Boomerang", "Hammer"]
 		starting_pants = ["Green Pants", "Fast Pants"]
 
 		weapon_choice = self.multiworld.random.choice(starting_weapons)
