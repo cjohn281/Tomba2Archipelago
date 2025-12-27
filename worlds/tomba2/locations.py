@@ -2,7 +2,7 @@ from BaseClasses import Location
 from typing import NamedTuple, Dict, Tuple
 
 
-LocPre: Dict[str, str] = {
+location_prefix: Dict[str, str] = {
 	"TotF": "Town of the Fishermen - ",
 	"WotH": "Waterfall of the Heavens - ",
 	"PA": "Pipe Area - ",
@@ -15,38 +15,50 @@ LocPre: Dict[str, str] = {
 	"WT": "Water Temple - ",
 }
 
+req_group: Dict[str, Tuple[Tuple[str, int], ...]] = {
+ "grapple_group": (("Grapple", 1),("Doka Pin", 1)),
+ "hammer_group": (("Hammer", 1),("Fire Hammer", 1), ("Torch Hammer", 1)),
+ "boomerang_group": (("Boomerang", 1),("Ice Boomerang", 1), ("Glacier Boomerang", 1)),
+ "flying_group": (("Bird Clothes", 1),("Squirrel Clothes", 1)),
+ "fire_group": (("Fire Hammer", 1),("Torch Hammer", 1)),
+ "ice_group": (("Ice Boomerang", 1),("Glacier Boomerang", 1)),
+ "bucket_group": (("Bucket", 1),("Mermaid Bucket", 1)),
+}
+
 
 class Tomba2Location(Location):
 	pass
 
 
+
 class LocationData(NamedTuple):
 	prefix: str
 	name: str
-	requirements: Tuple[Tuple[str, int], ...] = ()
+	req_all: Tuple[Tuple[str, int], ...] = ()
+	req_any: Tuple[Tuple[str, int], ...] = ()
 
 	@property
 	def full_name(self) -> str:
-		return f"{LocPre[self.prefix]}{self.name}"
+		return f"{location_prefix[self.prefix]}{self.name}"
 
 
 location_table: Dict[int, LocationData] = {
 	# Town of the Fisherman 8300xx
-	830000: LocationData("TotF", "Seesaw 1 Chick"),
-	830001: LocationData("TotF", "Seesaw 2 Chick"),
-	830002: LocationData("TotF", "Magic Flower"),
+	830000: LocationData("TotF", "Magic Flower", (), req_group["bucket_group"]),
+	830001: LocationData("TotF", "Seesaw 1 Chick"),
+	830002: LocationData("TotF", "Seesaw 2 Chick"),
 	830003: LocationData("TotF", "Rare Fish"),
 	830004: LocationData("TotF", "Bucket"),
 	830005: LocationData("TotF", "Above Climbable Pole"),
 	830006: LocationData("TotF", "Fish Drying Net"),
-	830007: LocationData("TotF", "Kainen",(("Bucket", 1),)),
+	830007: LocationData("TotF", "Kainen", (), req_group["bucket_group"]),
 	830008: LocationData("TotF", "Net Bridge",(("Star-Shaped Cog", 1),)),
 
 	# Town of the Fisherman Chests
 	830009: LocationData("TotF", "Red Chest near burning house",(("Red Key", 1),)),
 	830010: LocationData("TotF", "Red Chest above the third seesaw",(("Red Key", 1),)),
 	830011: LocationData("TotF", "Red Chest past the second seesaw",(("Red Key", 1),)),
-	# 830012: LocationData("TotF", "Green Chest above the third seesaw",(("Green Key", 1),("Grapple", 1),)),
+	# 830012: LocationData("TotF", "Green Chest above the third seesaw",(("Green Key", 1)), req_group["grapple_group"]),
 	830013: LocationData("TotF", "Green Chest midair past the second seesaw",(("Green Key", 1),)),
 	
 	# Waterfall of the Heavens 8301xx
