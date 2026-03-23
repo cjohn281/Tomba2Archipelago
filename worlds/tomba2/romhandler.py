@@ -209,23 +209,34 @@ def write_patch(world: "Tomba2World", patch: Tomba2ProcedurePatch) -> None:
     # Example: write an AP marker into MAIN.EXE at a known-safe offset.
     # 0x009CE70 is the offset *inside MAIN.EXE*; exe_to_bin_offset converts
     # this into the corresponding byte offset in Track 1 BIN.
-    marker_exe_offset = 0x009CE70
-    marker_bin_addr = exe_to_bin_offset(marker_exe_offset)
-    logger.info(
-        "Tomba 2 MAIN.EXE marker mapping: exe_offset=0x%X -> bin_offset=0x%X",
-        marker_exe_offset,
-        marker_bin_addr,
-    )
-    patch.write_token(APTokenTypes.WRITE, marker_bin_addr, b"AP01TMB2")
+    # marker_exe_offset = 0x009CE70
+    # marker_bin_addr = exe_to_bin_offset(marker_exe_offset)
+    # logger.info(
+    #     "Tomba 2 MAIN.EXE marker mapping: exe_offset=0x%X -> bin_offset=0x%X",
+    #     marker_exe_offset,
+    #     marker_bin_addr,
+    # )
+    # patch.write_token(APTokenTypes.WRITE, marker_bin_addr, b"A01TMBA2")
 
-    patch.write_token(APTokenTypes.WRITE, 0x0C1718, b"\x22\x76\xC7\x52")
-    patch.write_token(APTokenTypes.WRITE, 0x0C1736, b"\x41\x95\xA7\x07\x07\x41\x7D\x3B")
-    patch.write_token(APTokenTypes.WRITE, 0x0C176E, b"\xF7\x24\xAE\xBD")
-    patch.write_token(APTokenTypes.WRITE, 0x0C178C, b"\xCA\x68\x6B\x8B\x2E\xAA\xE0\xA1")
-    patch.write_token(APTokenTypes.WRITE, 0x0C17C4, b"\xED\x02\x11\x2D")
-    patch.write_token(APTokenTypes.WRITE, 0x0C17CE, b"\x2C\x3C\x78\x6A\xD3\xA2\x58\x93\xF2\x41\x25\x2C\x38\x0F\x3F\xA1\x12\xE6\x17\xD8\xF2")
-    patch.write_token(APTokenTypes.WRITE, 0x0C1802, b"\xE8\x1E\x22\x38\x7A\xA2\x73\xB4\xAA\x0E\x52\x52\xF2\x1B\x07")
-    patch.write_token(APTokenTypes.WRITE, 0x0C1811, b"\x1A\x52\xB0\x39\x43")
+    patch.write_token(APTokenTypes.WRITE, 0x05423C, b"\x9E\xB1\x02\x08")
+    patch.write_token(APTokenTypes.WRITE, 0x054240, b"\x00\x00\x00\x00")
+    patch.write_token(APTokenTypes.WRITE, 0x054578, b"\xB7\x57\x3F\x7C")
+    patch.write_token(APTokenTypes.WRITE, 0x054598, b"\x44\x29\x75\xF5\x04\xE2\x7E\x25")
+    patch.write_token(APTokenTypes.WRITE, 0x0545CE, b"\x9F\x76\xFC\xF6")
+    patch.write_token(APTokenTypes.WRITE, 0x0545EE, b"\x29\x31\xC9\x18\xAD\x62\x9C\x61")
+    patch.write_token(APTokenTypes.WRITE, 0x054624, b"\xC3\x50\xCD\xA7\x9F\x07")
+    patch.write_token(APTokenTypes.WRITE, 0x054636, b"\x08\xB3\x16\x43\xEB\x6B\x2C\x1B\x25\xCC")
+    patch.write_token(APTokenTypes.WRITE, 0x054656, b"\x43\x01\xC4\x97\x2A\xAF\xB0\x47")
+    patch.write_token(APTokenTypes.WRITE, 0x05466A, b"\x67\x96\xFF\xBB\x7F\x8E\x05\x8F\x35\x52")
+    patch.write_token(APTokenTypes.WRITE, 0x05468A, b"\xDE\xC0\x27\x61\x6D\x59")
+    patch.write_token(APTokenTypes.WRITE, 0x0C1588, b"\x41\x30\x31\x54\x4D\x42\x41\x32\x00\x00\x84\x20\xE8\xFF\xBD\x27\x33\x35\x01\x08\x10\x00\xB0\xAF")
+    patch.write_token(APTokenTypes.WRITE, 0x0C1718, b"\xFB\x3B\xF7\xB9")
+    patch.write_token(APTokenTypes.WRITE, 0x0C1736, b"\x41\x5D\x98\x0C\x0A\x19\x3C\x3B\xAC\x0F\x66\x13\xE8\xE9\x4D\x4B\xC5\x10\xE0\x9B\xC2\x39\xE7\x57")
+    patch.write_token(APTokenTypes.WRITE, 0x0C176E, b"\x81\xF3\xFE\x9D")
+    patch.write_token(APTokenTypes.WRITE, 0x0C178C, b"\xCA\xC0\x55\xE5\x3A\xFD\xA2\xA1\xD8\xD7\x94\xE3\x0F\xFE\xE9\x1C\x58\x37\x37\x8D\x0D\x28\x3C\x9E")
+    patch.write_token(APTokenTypes.WRITE, 0x0C17C4, b"\x42\x98\x71\xE6\x92\x81\x18\x0B\x76\xEF\xBC\x2F\x4D\x46\x18\x15\x68\x03\xD9\x2B\xEd\xB2\xF3\x7A\xA2\x10\x60\xB5\x17\x1E")
+    patch.write_token(APTokenTypes.WRITE, 0x0C17F2, b"\xF6\xC8\xB6\xDC\xE2\xB7\x9F\x68\x64\x3A\xD2\x7E\xEF\xD0\x4F\xD7\x60\x47\xAC\x87\x62\xE8\x7A\xB9\x3F\x1C\x52\xA1\x60\x2A\x1E\x6D\x1E\x45\x39\x2D")
+    patch.write_token(APTokenTypes.WRITE, 0x0C1826, b"\xF6\x65\x7F\x3A\x13\x6F\x04\xBA\x58\x93")
 
     # Serialize the token list into the container.
     patch.write_file("token_data.bin", patch.get_token_binary())

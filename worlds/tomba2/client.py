@@ -78,13 +78,13 @@ class Tomba2Client(BizHawkClient):
             # 3) Require the AP marker in MainRAM at the address where the
             #    patched MAIN.EXE string appears once loaded.
             #
-            # We write "AP01TMB2" into MAIN.EXE at exe offset 0x009CE70.
+            # We write "A01TMBA2" into MAIN.EXE at exe offset 0x009CE70.
             # When the game loads this into RAM, that data shows up at
             # MainRAM address 0x00AC670.
             marker_result = await bizhawk.guarded_read(
                 ctx.bizhawk_ctx,
                 [(0x00AC670, 10, "MainRAM")],
-                [(0x00AC670, b"AP01TMB2", "MainRAM")],
+                [(0x00AC670, b"A01TMBA2", "MainRAM")],
             )
 
             if marker_result is None:
